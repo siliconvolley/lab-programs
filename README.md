@@ -1,1 +1,1 @@
-### This is made so that I can copy during labs hours 🌝
+### List of all the Lab Programs done in college ☠️
