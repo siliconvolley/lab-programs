@@ -1,57 +1,42 @@
-def tsp(graph, start):
-    num_nodes = len(graph)
-    visited = (1 << num_nodes) - 1 # Mark all nodes as unvisited except the starting node
-    memo = {} # Memoization dictionary for storing subproblem solutions
+def dij(n, v, cost):
+    flag = [0 for x in range(1, n + 2, 1)]
+    
+    dist = [float("inf") for x in range(1, n + 2, 1)]
+    dist[v] = 0
+    path = [[] for x in range(1, n + 2, 1)]
+    path[v].append(v)
+    
+    for _ in range(1, n + 1, 1):
+        u = -1
+        min_dist = float("inf")
+        for w in range(1, n + 1, 1):
+            if not flag[w] and dist[w] < min_dist:
+                u = w
+                min_dist = dist[w]
+        if u == -1:
+            break
+        flag[u] = 1
+            
+        for w in range(1, n + 1, 1):
+            if dist[u] + cost[u][w] < dist[w]:
+                dist[w] = dist[u] + cost[u][w]
+                path[w] = path[u] + [w]
+            
+    return dist, path
 
-    def tsp_util(curr_node, visited):
-        if visited == 0: # Base case: All nodes have been visited
-            return graph[curr_node][start] # Return to the starting node
-        # Check if the subproblem has already been solved
-        if (curr_node, visited) in memo:
-            return memo[(curr_node, visited)]
-            min_cost = sys.maxsize
-        for next_node in range(num_nodes):
-            if visited & (1 << next_node): # If the next node has not been visited
-                cost = graph[curr_node][next_node] + tsp_util(next_node, visited & ~(1 << next_node))
-            min_cost = min(min_cost, cost)
-            memo[(curr_node, visited)] = min_cost # Memoize the subproblem solution
-            return min_cost
-        return tsp_util(start, visited)
-
-def get_optimal_route(graph, start):
-    num_nodes = len(graph)
-    visited = (1 << num_nodes) - 1 # Mark all nodes as unvisited except the starting node
-    memo = {} # Memoization dictionary for storing subproblem solutions
-
-    def tsp_util(curr_node, visited):
-        if visited == 0: # Base case: All nodes have been visited
-            return [start]
-        # Check if the subproblem has already been solved
-        if (curr_node, visited) in memo:
-            return memo[(curr_node, visited)]
-            min_cost = sys.maxsize
-        optimal_route = []
-        for next_node in range(num_nodes):
-            if visited & (1 << next_node): # If the next node has not been visited
-                cost = graph[curr_node][next_node] + tsp_util(next_node, visited & ~(1 << next_node))
-            if cost < min_cost:
-                min_cost = cost
-                optimal_route = [curr_node] + tsp_util(next_node, visited & ~(1 << next_node))
-                memo[(curr_node, visited)] = optimal_route # Memoize the subproblem solution
-                return optimal_route
-        return tsp_util(start, visited)
-
-# Example usage
-graph = [
-    [0, 10, 20, 30], # Cost matrix representing distances between nodes
-    [10, 0, 5, 15],
-    [20, 5, 0, 8],
-    [30, 15, 8, 0]
-]
-start_node = 0 # Starting node index
-optimal_route = get_optimal_route(graph, start_node)
-total_cost = tsp(graph, start_node)
-print("Optimal Route:")
-for node in optimal_route:
-    print(f"Node {node + 1}")
-print(f"\nTotal Cost: {total_cost}")
+n = int(input("Enter the number of vertices: "))
+print("Enter the weighted matrix (seperated by spaces): ")
+cost = [[0 for j in range(1, n + 2, 1)] for i in range(1, n + 2, 1)]
+for i in range(1, n + 1, 1):
+    row = list(map(int, input().split()))
+    for j in range(1, n + 1, 1):
+        cost[i][j] = row[j - 1]
+        if cost[i][j] == 0:
+            cost[i][j] = float("inf")
+        
+v = int(input("Enter the source vertex: "))
+dist, path = dij(n, v, cost)
+print("The shortest path from the source", v, "to the remaining vertices is: ")
+for i in range(1, n + 1):
+    if  i != v:
+        print(v, "->", " -> ".join(map(str, path[i][1:])), "=", dist[i])
