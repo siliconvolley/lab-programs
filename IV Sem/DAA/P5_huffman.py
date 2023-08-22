@@ -2,13 +2,13 @@ import heapq
 from collections import defaultdict
 
 class HuffmanNode:
-    def _init_(self, character=None, frequency=None):
+    def __init__(self, character=None, frequency=None):
         self.character = character
         self.frequency = frequency
         self.left = None
         self.right = None
     
-    def _lt_(self, other):
+    def __lt__(self, other):
         return self.frequency < other.frequency
 
 def build_frequency_table(text):
@@ -67,16 +67,13 @@ def decode_text(encoded_text, huffman_tree):
             current_node = huffman_tree
     return decoded_text
 
-def main():
-    text = "hello world"
-    print("Original Text:", text)
-    frequency_table = build_frequency_table(text)
-    huffman_tree = build_huffman_tree(frequency_table)
-    codes = build_huffman_codes(huffman_tree)
-    encoded_text = encode_text(text, codes)
-    print("Encoded Text:", encoded_text)
-    decoded_text = decode_text(encoded_text, huffman_tree)
-    print("Decoded Text:", decoded_text)
 
-if __name__ == "_main_":
-    main()
+text = "hello world"
+print("Original Text:", text)
+frequency_table = build_frequency_table(text)
+huffman_tree = build_huffman_tree(frequency_table)
+codes = build_huffman_codes(huffman_tree)
+encoded_text = encode_text(text, codes)
+print("Encoded Text:", encoded_text)
+decoded_text = decode_text(encoded_text, huffman_tree)
+print("Decoded Text:", decoded_text)
