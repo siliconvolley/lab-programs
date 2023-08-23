@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 class Graph:
-    def _init_(self):
+    def __init__(self):
         self.graph = defaultdict(list)
     
     def add_edge(self, u, v):
@@ -46,7 +46,6 @@ def calculate_min_time_slots(subjects):
     return min_time_slots
 
 def main():
-    
     subjects = [
         ["Alice", "Bob", "Charlie"],
         ["Bob", "David"],
@@ -56,5 +55,5 @@ def main():
     min_time_slots = calculate_min_time_slots(subjects)
     print("Minimum Time Slots:", min_time_slots)
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
