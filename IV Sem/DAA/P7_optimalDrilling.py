@@ -1,7 +1,7 @@
 import itertools
 
 def calculate_distance(x1, y1, x2, y2):
-    return ((x1 - x2) * 2 + (y1 - y2) * 2) ** 0.5
+    return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
 def calculate_total_distance(points_order, distances):
     total_distance = 0
@@ -40,5 +40,5 @@ def main():
     optimal_time = find_optimal_drilling_time(points, toolbox_time)
     print("Optimal Drilling Time:", optimal_time)
 
-if __name__  == "_main_":
+if __name__  == "__main__":
     main()
