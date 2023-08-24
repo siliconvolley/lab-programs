@@ -23,6 +23,7 @@ def max_profit_list(jobs, totalTime):
 
 jobs = []
 
+print("Enter Job Information (separated by ,): ")
 for i in range (0, 4):
     jobsInfo = input()
     jobsInfo = tuple(int(a) for a in jobsInfo.split(","))
@@ -30,6 +31,6 @@ for i in range (0, 4):
 
 totalTime = int(input("Enter Total Time: "))
 
-profit_list = max_profit_list(jobs)
+profit_list = max_profit_list(jobs, totalTime)
 print("Maximum Profit:", sum(profit_list))
 print("Maximum Profit List:", profit_list)
