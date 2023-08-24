@@ -29,5 +29,3 @@ void uart_init(void)
   U0LCR = 0X00000003;
 	
 }
-	
-	
