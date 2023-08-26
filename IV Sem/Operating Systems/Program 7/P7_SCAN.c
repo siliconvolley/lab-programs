@@ -1,19 +1,19 @@
-// #include<math.h>
 #include<stdio.h>
 #include<stdlib.h>
+
 int main(){
     int RQ[100],i,j, n, totalheadmoment=0,initial,size,move;
-        printf("Enter the number of tracks: \n");
+        printf("Enter the number of tracks: ");
     scanf("%d",&n);
-    printf("Enter the tracks: \n");
+    printf("Enter the tracks: ");
     for(i=0;i<n;i++){
         scanf("%d",&RQ[i]); 
     }
-      printf("Enter initial head position: \n");
+      printf("Enter initial head position: ");
     scanf("%d",&initial);
-     printf("Enter total disk size\n");
+     printf("Enter total disk size: ");
     scanf("%d",&size);
-     printf("Enter the head moment direction for high 1 and for low 0: \n");
+     printf("Enter the head moment direction for high 1 and for low 0: ");
     scanf("%d",&move);
         for(i=0;i<n;i++){
             for(j=0;j<n-1;j++){
@@ -34,7 +34,7 @@ int main(){
         }
          
          if(move==1){
-             printf("Sequence of request access: \n");
+             printf("Sequence of request access: ");
              for(i=index;i<n;i++){
                  printf("%d ",RQ[i]);
                  totalheadmoment=totalheadmoment+abs(RQ[i]-initial);
@@ -49,7 +49,7 @@ int main(){
                   
               }
               }else{
-                  printf("sequence of request access: ");
+                  printf("Sequence of request access: ");
          
               for(i=index-1;i>=0;i--){
                   printf("%d ",RQ[i]);
