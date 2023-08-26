@@ -9,8 +9,7 @@ void main()
         flag2 = 0, pf = 0, frsize = 3, top = 0;
     for (i = 0; i < 3; i++)
     {
-        fr[i] =
-            -1;
+        fr[i] = -1;
     }
     for (j = 0; j < 12; j++)
     {
@@ -29,8 +28,7 @@ void main()
         {
             for (i = 0; i < frsize; i++)
             {
-                if (fr[i] ==
-                    -1)
+                if (fr[i] == -1)
                 {
                     fr[i] = page[j];
                     flag2 = 1;

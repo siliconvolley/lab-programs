@@ -16,5 +16,5 @@ int main()
 		TotalHeadMov = TotalHeadMov + abs(ReadyQueue[i]-initial);
 		initial = ReadyQueue[i];
 	}
-	printf("Total Head Movement = %d",TotalHeadMov);
+	printf("Total Head Movement = %d\n",TotalHeadMov);
 }
