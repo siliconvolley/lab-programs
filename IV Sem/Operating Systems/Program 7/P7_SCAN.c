@@ -1,72 +1,50 @@
-#include<stdio.h>
-#include<stdlib.h>
-
-int main(){
-    int RQ[100],i,j, n, totalheadmoment=0,initial,size,move;
-        printf("Enter the number of tracks: ");
-    scanf("%d",&n);
+#include <stdio.h>
+int main()
+{
+    int t[20], d[20], h, i, j, n, temp, k, atr[20], tot, p,
+        sum = 0;
+    printf("Enter the no of tracks to be traversed: ");
+    scanf("%d'", &n);
+    printf("Enter the position of head: ");
+    scanf("%d", &h);
+    t[0] = 0;
+    t[1] = h;
     printf("Enter the tracks: ");
-    for(i=0;i<n;i++){
-        scanf("%d",&RQ[i]); 
+    for (i = 2; i < n + 2; i++)
+        scanf("%d", &t[i]);
+    for (i = 0; i < n + 2; i++)
+    {
+        for (j = 0; j < (n + 2) - i - 1; j++)
+        {
+            if (t[j] > t[j + 1])
+            {
+                temp = t[j];
+                t[j] = t[j + 1];
+                t[j + 1] = temp;
+            }
+        }
     }
-      printf("Enter initial head position: ");
-    scanf("%d",&initial);
-     printf("Enter total disk size: ");
-    scanf("%d",&size);
-     printf("Enter the head moment direction for high 1 and for low 0: ");
-    scanf("%d",&move);
-        for(i=0;i<n;i++){
-            for(j=0;j<n-1;j++){
-                if(RQ[j]>RQ[j+1]){
-                    int temp;
-                    temp=RQ[j];
-                    RQ[j]=RQ[j+1];
-                    RQ[j+1]=temp;
-                }
-            }
-        }
-        int index;
-        for(i=0;i<n;i++){
-            if(initial<RQ[i]){
-                index=i;
-                break;
-            }
-        }
-         
-         if(move==1){
-             printf("Sequence of request access: ");
-             for(i=index;i<n;i++){
-                 printf("%d ",RQ[i]);
-                 totalheadmoment=totalheadmoment+abs(RQ[i]-initial);
-                 initial=RQ[i];
-             }
-              totalheadmoment=totalheadmoment+abs(size-RQ[i-1]-1);
-              initial=size-1;
-              for(i=index-1;i>=0;i--){
-                  printf("%d ",RQ[i]);
-                  totalheadmoment=totalheadmoment+abs(RQ[i]-initial);
-                  initial=RQ[i];
-                  
-              }
-              }else{
-                  printf("Sequence of request access: ");
-         
-              for(i=index-1;i>=0;i--){
-                  printf("%d ",RQ[i]);
-                  totalheadmoment=totalheadmoment+abs(RQ[i]-initial);
-                  initial=RQ[i];
-                  
-                   totalheadmoment=totalheadmoment+abs(RQ[i+1]-0);
-                   initial=0;
-                    for(i=index;i<n;i++){
-                 printf("%d ",RQ[i]);
-                 totalheadmoment=totalheadmoment+abs(RQ[i]-initial);
-                 initial=RQ[i];
-             }
-               printf("\nTotal head movement is %d\n",totalheadmoment) ;
-               return 0;   
-              }    
-         }
-    printf("\nTotal head movement is %d\n",totalheadmoment);
-    return 0;
+    for (i = 0; i < n + 2; i++)
+        if (t[i] == h)
+            j = i;
+    k = i;
+    p = 0;
+    while (t[j] != 0)
+    {
+        atr[p] = t[j];
+        j--;
+        p++;
+    }
+    atr[p] = t[j];
+    for (p = k + 1; p < n + 2; p++, k++)
+        atr[p] = t[k + 1];
+    for (j = 0; j < n + 1; j++)
+    {
+        if (atr[j] > atr[j + 1])
+            d[j] = atr[j] - atr[j + 1];
+        else
+            d[j] = atr[j + 1] - atr[j];
+        sum += d[j];
+    }
+    printf("\nAverage header movements: %f\n", (float)sum / n);
 }
