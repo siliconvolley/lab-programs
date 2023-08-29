@@ -1,57 +1,27 @@
-def is_safe(board, row, col, N):
-    # Check if it is safe to place a queen at position (row, col)
-    # Check for the same column
-    for i in range(row):
-        if board[i][col] == "Q":
+def isSafe(mat, r, c):
+    for i in range(r):
+        if mat[i][c] == 'Q':
             return False
-        
-    # Check for the upper left diagonal
-    i = row - 1
-    j = col - 1
-    while i >= 0 and j >= 0:
-        if board[i][j] == "Q":
+        if c - r + i >= 0 and mat[i][c - r + i] == 'Q':
             return False
-        i -= 1
-        j -= 1
-    # Check for the upper right diagonal
-    i = row - 1
-    j = col + 1
-    while i >= 0 and j < N:
-        if board[i][j] == "Q":
+        if c + r - i < len(mat) and mat[i][c + r - i] == 'Q':
             return False
-        i -= 1
-        j += 1
     return True
-
-def solve_n_queens(board, row, N, solutions):
-    # Base case: All queens have been placed
-    if row == N:
-        solutions.append([''.join(row) for row in board])
+def nQueen(mat, r):
+    if r == len(mat):
+        printSolution(mat)
         return
-    for col in range(N):
-        if is_safe(board, row, col, N):
-            board[row][col] = "Q"
-            solve_n_queens(board, row + 1, N, solutions)
-            board[row][col] = "."
-    return
-
-def n_queens_solver(N):
-    board = [["." for _ in range(N)] for _ in range(N)]
-    solutions = []
-    solve_n_queens(board, 0, N, solutions)
-    return solutions
-
-def main():
-    # Example usage
-    N = 4
-    solutions = n_queens_solver(N)
-    if len(solutions) == 0:
-        print("Not possible")
-    else:
-        for solution in solutions:
-            for row in solution:
-                print(row)
-            print()
-
-if __name__ == "__main__":
-    main()
+    for i in range(len(mat)):
+        if isSafe(mat, r, i):
+            mat[r][i] = 'Q'
+            nQueen(mat, r + 1)
+            mat[r][i] = '-'
+def printSolution(mat):
+    for r in mat:
+        print(''.join(r))
+    print()
+if __name__ == '__main__':
+    print("Enter the number of queens")
+    N = int(input())
+    mat = [['-' for _ in range(N)] for _ in range(N)]
+    nQueen(mat, 0)

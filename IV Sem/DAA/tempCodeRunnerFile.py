@@ -13,4 +13,4 @@ print(f"Weight = {weight}")
 n = len(profit) 
 W = 10 
 print(f"Knapsack Capacity = {W}")
-print("Maximum Profit =",knapSack(W, weight, profit, n)) 	 
+print(knapSack(W, weight, profit, n)) 	 

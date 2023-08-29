@@ -32,4 +32,3 @@ while len(nodes) > 1:
     new_node = Node(left.freq + right.freq, left.symbol + right.symbol, left, right) 
     heapq.heappush(nodes, new_node) 
 printNodes(nodes[0]) 
- 
