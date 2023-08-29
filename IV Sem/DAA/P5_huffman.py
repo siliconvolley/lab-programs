@@ -17,7 +17,7 @@ def printNodes(node, val=''):
     newVal = val + str(node.huff)     
     if not node.left and not node.right:         
         print(f"{node.symbol} -> {newVal}")     
-        printNodes(node.left, newVal) 
+    printNodes(node.left, newVal) 
     printNodes(node.right, newVal) 
  
 string = input("Enter the string: ").lower() 

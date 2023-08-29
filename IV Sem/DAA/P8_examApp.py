@@ -7,6 +7,7 @@ def calculate_min_time_slots(subjects):
         for student1, student2 in combinations(subjects_list, 2): 
             graph[student1].add(student2) 
             graph[student2].add(student1) 
+            
     def graph_coloring(): 
         color = {}         
         for student in graph:             
