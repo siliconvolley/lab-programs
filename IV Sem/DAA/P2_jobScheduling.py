@@ -1,36 +1,20 @@
-#To find the maximum duration of all the jobs
-def find_max_duration(jobs):
-    durations = [t[0] for t in jobs]
-    return max(durations)
-
-
-#To return a list of the profits in each job
-def job_profits(jobs):
-    profits = [p[1] for p in jobs]
-    return profits
-
-
-#To the find the combination of jobs with maximum profit
-def max_profit_list(jobs, totalTime):
-    max_duration = find_max_duration(jobs)
-
-    sorted_list = sorted(job_profits(jobs), reverse=True)
-
-    job_slots = []
-    for i in range(0, max_duration):
-        job_slots.append(sorted_list[i])
-    return job_slots
-
-jobs = []
-
-print("Enter Job Information (separated by ,): ")
-for i in range (0, 4):
-    jobsInfo = input()
-    jobsInfo = tuple(int(a) for a in jobsInfo.split(","))
-    jobs.append(jobsInfo)
-
-totalTime = int(input("Enter Total Time: "))
-
-profit_list = max_profit_list(jobs, totalTime)
-print("Maximum Profit:", sum(profit_list))
-print("Maximum Profit List:", profit_list)
+def find_optimal_schedule(jobs): 
+    total_time = total_profit = 0     
+    schedule = []     
+    for duration, profit in sorted(jobs, key=lambda x: x[1] / x[0], reverse=True):         
+        if total_time + duration <= profit: 
+            schedule.append((duration, profit))             
+            total_time += duration             
+            total_profit += profit 
+    return schedule 
+def display_schedule(schedule): 
+    total_time = sum(duration for duration, _ in schedule)     
+    total_profit = sum(profit for _, profit in schedule)     
+    print("Optimal Schedule:")     
+    for i, (duration, profit) in enumerate(schedule): 
+        print(f"Job {i + 1}: Duration={duration}, Profit={profit}")     
+        print(f"\nTotal Time: {total_time}\nTotal Profit: {total_profit}") 
+ 
+# Example usage 
+jobs = [(3, 5), (4, 6), (2, 2), (1, 8), (5, 10)]  # Format: (duration, profit) 
+display_schedule(find_optimal_schedule(jobs)) 
