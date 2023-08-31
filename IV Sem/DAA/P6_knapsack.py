@@ -7,7 +7,7 @@ def knapSack(W, wt, val, n):
 
 profit = [60, 100, 120] 
 weight = [10, 20, 30] 
-print(f"Profit = {profit}")
+print("Profit = ", profit)
 print(f"Weight = {weight}")
 
 n = len(profit) 

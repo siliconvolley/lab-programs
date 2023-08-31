@@ -22,6 +22,7 @@ def printNodes(node, val=''):
  
 string = input("Enter the string: ").lower() 
 res = Counter(string) 
+print(res)
 nodes = [Node(freq, char) for char, freq in res.items()] 
 heapq.heapify(nodes) 
 while len(nodes) > 1: 
