@@ -31,4 +31,3 @@ cat("2nd Quartile =",quartile_2)
 
 quartile_3 <- quantile(examples[, 1], 0.75)
 cat("3rd Quartile =",quartile_3)
-

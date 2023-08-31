@@ -17,3 +17,4 @@ print(histogram_plot)
 density_plot <- densityplot(~ mpg, data = mtcars, main = "Density Plot of MPG", xlab =
                               "MPG", ylab = "Density", col = "purple")
 print(density_plot)
+
