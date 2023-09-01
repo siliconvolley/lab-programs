@@ -1,15 +1,23 @@
-
 # Create a file
-file.create("D:/AEC_File1.txt")
-# Writing into a file
-write.table(x = iris[1:10, ], file = "AEC_File1.txt")
-# Reading a text file
-myData = read.table(file = "AEC_File1.txt ")
-print(myData)
+file.create("D:/aec-programs/rishabh.txt")
+list.files("D:/aec-programs/")
+
+# Writing into a .txt file
+text = "This is a test for writing into a file in R"
+cat(text, file = "D:/aec-programs/rishabh.txt", sep = " ")
+content <- readLines("D:/aec-programs/rishabh.txt")
+print(content)
+
 # Renaming a file
-file.rename("AEC_File1.txt", "AEC_renamed.txt")
-# Listing the table
-list.files()
-# Copy a file
-file.copy("D:/AEC_File1.txt", "D:/programs")
-list.files("D:/programs")
+file.rename("D:/aec-programs/rishabh.txt", "D:/aec-programs/rishabh(changed).txt")
+
+# Reading a file
+text <- readLines("D:/aec-programs/rishabh(changed).txt")
+print(text)
+
+# Listing all the files
+list.files() # Default directory
+list.files("D:/aec-programs/") # My directory
+
+# Copying a file
+file.copy("D:/aec-programs/rishabh(changed).txt", "D:/aec-programs/rishabh(final).txt")

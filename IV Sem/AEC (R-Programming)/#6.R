@@ -1,13 +1,14 @@
-marks<-c(100,65,89,90,85)
-subjects<-c("Math","DAA","R","OS","ARM")
-
-percentage<-round(100 * marks/sum(marks),1)
-
-pie(marks, labels=marks, main="Marks scored by a student", col=rainbow(length(marks)))
-legend("topleft",subjects,cex=1,fill =rainbow(length(marks)))
 
 library(plotrix)
 
-pie3D(marks, labels=marks, main="Marks scored by a person", col=rainbow(length(marks)),explode=0.2)
-legend("bottom",subjects,cex=1,fill =rainbow(length(marks))) 
+marks <- c(100,89,90,85)
+subjects <- c("EGDL","CPS","English","Electrical")
+
+pie(marks, labels=marks, main="Subject Results in 1st SEM", col=c("red", "green", "blue", "purple"))
+
+legend("topright", subjects, cex=1, fill=c("red", "green", "blue", "purple"))
+
+pie3D(marks, labels=marks, main="Subject Results in 1st SEM", col=c("red", "green", "blue", "purple"),explode=0.15)
+
+legend("bottom",subjects,cex=1,fill=c("red", "green", "blue", "purple")) 
 

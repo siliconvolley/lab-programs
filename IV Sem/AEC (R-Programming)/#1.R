@@ -23,11 +23,5 @@ range_value <- range(examples[, 1])
 cat("Range =", range_value)
 
 # Taking the quartile
-quartile_1 <- quantile(examples[, 1], 0.25)
-cat("1st Quartile =",quartile_1)
-
-quartile_2 <- quantile(examples[, 1], 0.5)
-cat("2nd Quartile =",quartile_2)
-
-quartile_3 <- quantile(examples[, 1], 0.75)
-cat("3rd Quartile =",quartile_3)
+quartiles <- quantile(examples[, 1])
+cat("Quartiles =",quartiles)

@@ -1,23 +1,35 @@
-string = "Hello World"
-# nchar function
-nchar(string)
-# toupper function
-toupper(string)
-# tolower function
-tolower(string)
-# substr function
-substr(string, 5, 20)
-# grep function
-grep("wor", string)
-# paste function
-paste("hello", "world", string, sep = "-")
-# strsplit function
-strsplit(string,'e')
-# sprintf function
-age = 40L
-name = "Ram"
-sprintf("%s is %d years old", name, age)
-# cat function
-cat("hello","world",sep = "-")
-# sub function
-sub("World", "there!", string)
+
+text <- readline("Enter a string: ")
+
+# nchar string function
+paste("Length of",text,"is",nchar(text))
+
+# toupper string function
+paste("Upper Case of",text,"is",toupper(text))
+
+# tolower string function
+paste("Lower Case of",text,"is",tolower(text))
+
+# substr string function
+paste("Sub-string of",text,"is",sub <- substr(text, 5, 10))
+
+# grep string function
+paste("grep (hell) of",text,"is",grep("hell", text))
+
+# paste string function
+paste("Hello","Sahyadri", sep = "-")
+
+# strsplit string function
+strsplit(text, "o")
+
+# sprintf string function
+operand <- 8
+sprintf("Square of %d is %d", operand, operand^2)
+
+# cat string function
+cat("cat string function is working!")
+
+# sub string function
+string <- "Apple is the best"
+print(string)
+sub("Apple", "Samsung", string)

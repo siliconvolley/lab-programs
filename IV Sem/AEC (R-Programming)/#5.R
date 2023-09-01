@@ -1,15 +1,19 @@
 # Sample data
-x = c(1, 2, 3, 4, 5)
-y = c(2, 4, 6, 8, 10)
+x = c(34, 42, 69,87, 90, 88) #X-Axis
+y = c(1, 5, 14, 16, 19, 23) #Y-Axis
+
 # Scatter Plot
-plot(x, y, type = "p", col = "red", pch = 16, xlab = "X-axis", ylab = "Y-axis", main = "Scatter
-Plot Example")
+plot(x, y, type = "p", col = "red", pch = 16, xlab = "X-Axis", ylab = "Y-Axis", main = "Scatter
+Plot Graph Example:")
+
 # Line Plot
-plot(x, y, type = "l", col = "blue", lwd = 2, xlab = "X-axis", ylab = "Y-axis", main = "Line Plot
-Example")
+plot(x, y, type = "l", col = "blue", lwd = 4, xlab = "X-Axis", ylab = "Y-Axis", main = "Line Plot Graph 
+Example:")
+
 # Bar Plot
-barplot(y, names.arg = x, col = "purple", xlab = "X-axis", ylab = "Y-axis", main = "Bar Plot
-Example")
+barplot(y, names.arg = x, col = "green", xlab = "X-Axis", ylab = "Y-Axis", main = "Bar Plot Graph
+Example: ")
+
 # Histogram
-hist(y, col = "red", xlab = "X-axis", ylab = "Frequency", main = "Histogram Example")
+hist(y, col = "purple", xlab = "X-Axis", ylab = "Frequency", main = "Histogram Graph Example:")
 
