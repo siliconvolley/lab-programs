@@ -1,36 +1,43 @@
-from itertools import combinations 
- 
-def calculate_min_time_slots(subjects): 
-    students = set(student for subject in subjects for student in subject)     
-    graph = {student: set() for student in students} 
-    for subjects_list in subjects:         
-        for student1, student2 in combinations(subjects_list, 2): 
-            graph[student1].add(student2) 
-            graph[student2].add(student1) 
-            
-    def graph_coloring(): 
-        color = {}         
-        for student in graph:             
-            neighbors_color = set(color.get(neighbor, None) for neighbor in graph[student])             
-            for c in range(1, len(graph) + 1):                 
-                if c not in neighbors_color: 
-                    color[student] = c                     
-                    break 
-        return max(color.values()) 
- 
-    min_time_slots = graph_coloring() 
-    return min_time_slots 
- 
-def main(): 
-    subjects = [ 
-        ["Alice", "Bob", "Charlie"], 
-        ["Bob", "David"], 
-        ["Charlie", "Eve", "Frank"], 
-        ["David", "Frank"] 
-    ]     
-    min_time_slots = calculate_min_time_slots(subjects)     
-    print("Minimum Time Slots:", min_time_slots) 
- 
-if __name__ == "__main__": 
-    main() 
+from collections import defaultdict
 
+class Graph:
+    def __init__(self, subjects):
+        self.subjects = subjects
+        self.graph = defaultdict(list)
+    def add_edge(self, subject1, subject2):
+        self.graph[subject1].append(subject2)
+        self.graph[subject2].append(subject1)
+    def graph_coloring(self):
+        color_map = {}
+        available_colors = set(range(1, len(self.subjects) + 1))
+        for subject in self.subjects:
+            used_colors = set()
+            for neighbor in self.graph[subject]:
+                if neighbor in color_map:
+                    used_colors.add(color_map[neighbor])
+            available_color = available_colors - used_colors
+            if available_color:
+                color_map[subject] = min(available_color)
+            else:
+                # If no available color, assign a new color
+                color_map[subject] = len(available_colors) + 1
+                available_colors.add(color_map[subject])
+        return color_map
+    def get_minimum_time_slots(self):
+        color_map = self.graph_coloring()
+        return max(color_map.values())
+# Example usage
+subjects = ['Math', 'Physics', 'Chemistry', 'Biology']
+students = {
+    'Math': ['Alice', 'Bob', 'Charlie'],
+    'Physics': ['Alice', 'Charlie', 'David'],
+    'Chemistry': ['Bob', 'Charlie', 'Eve'],
+    'Biology': ['Alice', 'David', 'Eve']
+}
+graph = Graph(subjects)
+graph.add_edge('Math', 'Physics')
+graph.add_edge('Math', 'Chemistry')
+graph.add_edge('Physics', 'Chemistry')
+graph.add_edge('Physics', 'Biology')
+minimum_time_slots = graph.get_minimum_time_slots()
+print(f"Minimum time slots needed: {minimum_time_slots}")

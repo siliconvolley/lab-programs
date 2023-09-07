@@ -1,20 +1,27 @@
-def find_optimal_schedule(jobs): 
-    total_time = total_profit = 0     
-    schedule = []     
-    for duration, profit in sorted(jobs, key=lambda x: x[1] / x[0], reverse=True):         
-        if total_time + duration <= profit: 
-            schedule.append((duration, profit))             
-            total_time += duration             
-            total_profit += profit 
-    return schedule 
-def display_schedule(schedule): 
-    total_time = sum(duration for duration, _ in schedule)     
-    total_profit = sum(profit for _, profit in schedule)     
-    print("Optimal Schedule:")     
-    for i, (duration, profit) in enumerate(schedule): 
-        print(f"Job {i + 1}: Duration={duration}, Profit={profit}")     
-        print(f"\nTotal Time: {total_time}\nTotal Profit: {total_profit}") 
- 
-# Example usage 
-jobs = [(3, 5), (4, 6), (2, 2), (1, 8), (5, 10)]  # Format: (duration, profit) 
-display_schedule(find_optimal_schedule(jobs)) 
+class Job:
+    def __init__(self, taskId, deadline, profit):
+        self.taskId = taskId
+        self.deadline = deadline
+        self.profit = profit
+def scheduleJobs(jobs, T):
+    profit = 0
+    slot = [-1] * T
+    jobs.sort(key=lambda x: x.profit, reverse=True)
+    for job in jobs:
+        for j in reversed(range(job.deadline)):
+            if j < T and slot[j] == -1:
+                slot[j] = job.taskId
+                profit += job.profit
+                break
+    print('The scheduled jobs are:', list(filter(lambda x: x != -1, slot)))
+    print('The total profit earned is:', profit)
+if __name__ == '__main__':
+    jobs = []
+    n = int(input('Enter the number of jobs: '))
+    for i in range(n):
+        taskId = int(input(f'Enter the task ID for job {i+1}: '))
+        deadline = int(input(f'Enter the deadline for job {i+1}: '))
+        profit = int(input(f'Enter the profit for job {i+1}: '))
+        jobs.append(Job(taskId, deadline, profit))
+    T = int(input('Enter the deadline limit: '))
+    scheduleJobs(jobs, T)
