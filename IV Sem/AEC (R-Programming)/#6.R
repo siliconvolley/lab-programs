@@ -1,14 +1,18 @@
+# data = c(23, 56, 20, 63)
+x <- readline("x (comma separated): ") 
+data <- as.numeric(strsplit(x, ",")[[1]]) 
+print(data)
+#places = c("Mulky","Mangalore","Udupi","Kumble")
+places <- readline("Enter labels (comma-separated): ") 
+labels <- (strsplit(places, ",")[[1]]) 
+print(labels)
 
-library(plotrix)
+piepercent= round(100 * data / sum(data),1) 
+symbol=paste(piepercent,"%")
 
-marks <- c(100,89,90,85)
-subjects <- c("EGDL","CPS","English","Electrical")
+pie(data, labels = symbol, main = "City pie chart", col = rainbow(length(data))) 
+legend("topright", labels, cex=1, fill=rainbow(length(data))) 
 
-pie(marks, labels=marks, main="Subject Results in 1st SEM", col=c("red", "green", "blue", "purple"))
-
-legend("topright", subjects, cex=1, fill=c("red", "green", "blue", "purple"))
-
-pie3D(marks, labels=marks, main="Subject Results in 1st SEM", col=c("red", "green", "blue", "purple"),explode=0.15)
-
-legend("bottom",subjects,cex=1,fill=c("red", "green", "blue", "purple")) 
-
+library(plotrix) 
+pie3D(data, labels = symbol, main = "City pie chart", col = rainbow(length(data))) 
+legend("topright", labels, cex = 1, fill=rainbow(length(data)))

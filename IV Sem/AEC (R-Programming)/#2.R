@@ -3,8 +3,8 @@ file.create("D:/aec-programs/rishabh.txt")
 list.files("D:/aec-programs/")
 
 # Writing into a .txt file
-text = "This is a test for writing into a file in R"
-cat(text, file = "D:/aec-programs/rishabh.txt", sep = " ")
+text = "This is a test for writing into a file in R\n"
+cat(text, file = "D:/aec-programs/rishabh.txt")
 content <- readLines("D:/aec-programs/rishabh.txt")
 print(content)
 

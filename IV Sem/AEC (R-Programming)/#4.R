@@ -11,7 +11,7 @@ paste("Upper Case of",text,"is",toupper(text))
 paste("Lower Case of",text,"is",tolower(text))
 
 # substr string function
-paste("Sub-string of",text,"is",sub <- substr(text, 5, 10))
+paste("Sub-string of",text,"is", substr(text, 5, 10))
 
 # grep string function
 paste("grep (hell) of",text,"is",grep("hell", text))
