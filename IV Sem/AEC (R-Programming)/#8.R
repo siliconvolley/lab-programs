@@ -13,6 +13,6 @@ data = data.frame(group = rep(c("A", "B", "C"), each = 50), value = rnorm(150))
 
 # Create a box plot
 ggplot(data, aes(x = group, y = value, fill = group)) + 
-  geom_boxplot() + 
+  geom_boxplot(fill = c("black", "yellow", "lavender")) + 
   labs(title = "Box Plot", x = "Group", y = "Value") + 
   theme_dark()
