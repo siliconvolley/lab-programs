@@ -1,18 +1,8 @@
-
 library(ggplot2)
 
-data = data.frame(values = rnorm(1000))
+ggplot(mtcars, aes(x=mpg)) + geom_histogram(binwidth = 1, col = "black", fill = "orangered")
 
-# Create a histogram
-ggplot(data, aes(x = values)) + 
-  geom_histogram(binwidth = 0.5, fill = "red", color = "blue") + 
-  labs(title = "Histogram", x = "Values", y = "Frequency") + 
-  theme_minimal()
+ggplot (mtcars, aes(x=hp)) + geom_boxplot(col = "black", fill = "lightblue")
 
-data = data.frame(group = rep(c("A", "B", "C"), each = 50), value = rnorm(150))
-
-# Create a box plot
-ggplot(data, aes(x = group, y = value, fill = group)) + 
-  geom_boxplot(fill = c("black", "yellow", "lavender")) + 
-  labs(title = "Box Plot", x = "Group", y = "Value") + 
-  theme_dark()
+print(mtcars['hp'])
+print(iris['Sepal'])
