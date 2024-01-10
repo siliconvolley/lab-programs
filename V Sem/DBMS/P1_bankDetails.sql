@@ -41,17 +41,14 @@ CREATE TABLE LOAN (
 -- To solve the sub questions
 
 -- a) Find all the customers who have atleast one account at the "Mangaluru" branch
-SELECT CUSTOMER_ID, CUSTOMER_NAME
+SELECT C.CUSTOMER_ID, C.CUSTOMER_NAME
 FROM CUSTOMER C, ACCOUNT A, BRANCH B
 WHERE B.BRANCH_ID = A.BRANCH_ID AND A.CUSTOMER_ID = C.CUSTOMER_ID AND B.BRANCH_NAME = 'Mangaluru';
 
 -- b) Find names of the depositors who have deposited highest amount among all the customers
-SELECT CUSTOMER_ID, CUSTOMER_NAME, ACCOUNT_BALANCE
+SELECT C.CUSTOMER_ID, C.CUSTOMER_NAME, ACCOUNT_BALANCE
 FROM CUSTOMER C, ACCOUNT A
-WHERE C.CUSTOMER_ID = A.CUSTOMER_ID AND ACCOUNT_BALANCE = (
-    SELECT MAX(ACCOUNT_BALANCE)
-    FROM ACCOUNT
-);
+WHERE C.CUSTOMER_ID = A.CUSTOMER_ID AND ACCOUNT_BALANCE = (SELECT MAX(ACCOUNT_BALANCE) FROM ACCOUNT);
 
 -- c) Retrieve the customer name and loan amount of a customer who borrowed a loan of more than 5,00,000
 SELECT CUSTOMER_NAME, AMOUNT
@@ -72,3 +69,41 @@ DELETE FROM BRANCH WHERE BRANCH_NAME = 'Delhi';
 
 -- ! NOTE: Before deleting, display the contents to be deleted for confirmation
 
+
+-- SOME EXAMPLE DATA ENTRIES
+
+-- for branch()
+INSERT INTO BRANCH VALUES ('cnr01', 'Canara', 'Mangaluru', 10000000);
+INSERT INTO BRANCH VALUES ('cnr02', 'Canara', 'Mysore', 140000000);
+INSERT INTO BRANCH VALUES ('cnr03', 'Canara', 'Udupi', 467000000);
+INSERT INTO BRANCH VALUES ('sbi01', 'SBI', 'Hampankatta', 156080000);
+INSERT INTO BRANCH VALUES ('sbi02', 'SBI', 'Statebank', 57000000);
+INSERT INTO BRANCH VALUES ('sbi03', 'SBI', 'Mulki', 75600000);
+INSERT INTO BRANCH VALUES ('hdf01', 'HDFC', 'Delhi', 753290000);
+INSERT INTO BRANCH VALUES ('hdf02', 'HDFC', 'Kochi', 743309000);
+INSERT INTO BRANCH VALUES ('hdf03', 'HDFC', 'Munnar', 52309000);
+
+-- for customer()
+INSERT INTO CUSTOMER VALUES ('4sf21bnk01', 'Achal Kumar', 34, 'Malaysia', 892713);
+INSERT INTO CUSTOMER VALUES ('4sf21bnk02', 'Rishabh Singh', 44, 'Iceland', 447378);
+INSERT INTO CUSTOMER VALUES ('4sf21bnk03', 'Aditya Pal', 35, 'Goa', 328947);
+INSERT INTO CUSTOMER VALUES ('4sf21bnk04', 'Manjunath Rai', 28, 'Gokarna', 432783);
+INSERT INTO CUSTOMER VALUES ('4sf21bnk05', 'Rishab Nayak', 30, 'Bengaluru', 989328);
+INSERT INTO CUSTOMER VALUES ('4sf21bnk06', 'Michael Swamy', 31, 'Kharagpur', 323737);
+INSERT INTO CUSTOMER VALUES ('4sf21bnk07', 'Sachin Padukone', 40, 'Chennai', 312739);
+INSERT INTO CUSTOMER VALUES ('4sf21bnk08', 'Allison Burgers', 25, 'Wadiya', 137982);
+
+-- for account()
+INSERT INTO ACCOUNT VALUES (123456, 'cnr01', 'Savings', 509000, '4sf21bnk01');
+INSERT INTO ACCOUNT VALUES (116522, 'cnr03', 'Joint', 14554000, '4sf21bnk05');
+INSERT INTO ACCOUNT VALUES (143265, 'sbi01', 'Joint', 150000, '4sf21bnk02');
+INSERT INTO ACCOUNT VALUES (531245, 'sbi02', 'Savings', 50000, '4sf21bnk04');
+INSERT INTO ACCOUNT VALUES (651341, 'hdf01', 'FD', 509000, '4sf21bnk03');
+INSERT INTO ACCOUNT VALUES (312312, 'hdf03', 'FD', 705000, '4sf21bnk06');
+
+-- for loan()
+INSERT INTO LOAN VALUES (123, 'cnr01', 120000, '4sf21bnk02');
+INSERT INTO LOAN VALUES (124, 'sbi01', 450000, '4sf21bnk05');
+INSERT INTO LOAN VALUES (456, 'cnr03', 1120000, '4sf21bnk01');
+INSERT INTO LOAN VALUES (876, 'cnr02', 1270000, '4sf21bnk03');
+INSERT INTO LOAN VALUES (435, 'hdf01', 1920000, '4sf21bnk06');
