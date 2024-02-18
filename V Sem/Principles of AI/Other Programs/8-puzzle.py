@@ -42,7 +42,7 @@ def move_right(board, empty_location):
         board[i][j], board[i][j-1] = board[i][j-1], board[i][j]
     return board
 
-def check_matchin_numbers(board):
+def check_matching_numbers(board):
     current_matching_numbers = 0
     for i in range(len(board)):
         for j in range(len(board[i])):
@@ -51,15 +51,16 @@ def check_matchin_numbers(board):
     return current_matching_numbers
     
 
-def solve_board(board):
-    check_matchin_numbers()
-    
+def solve_board(board, current_empty_location):
+    if matching_numbers == (len(START) * len(START)) - 1:
+        return board
 
-    return
+    
 
 def main():
     board = START
-    solve_board()
+    current_empty_location = find_empty_location(board)
+    board = solve_board(board, current_empty_location)
 
 if __name__ == "__main__":
     main()
