@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<records>
+    <place>
+        <name>Mysuru</name>
+        <lat>12.295</lat>
+        <long>76.89</long>
+        <temperature>34</temperature>
+        <humidity>90%</humidity>
+    </place>
+    <place>
+        <name>bengaluru</name>
+        <lat>18.295</lat>
+        <long>79.89</long>
+        <temperature>32</temperature>
+        <humidity>80%</humidity>
+    </place>
+</records>
