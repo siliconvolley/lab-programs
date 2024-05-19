@@ -4,8 +4,12 @@
 //      c) They play inside beautiful garden
 //    Calculate P for the sentence "They play in a big garden" assuming a bigram language model
 
-#include<stdio.h>
+#include <iostream>
 
-void main() {
+using namespace std;
 
+int main() {
+    
+
+    return 0;
 }
