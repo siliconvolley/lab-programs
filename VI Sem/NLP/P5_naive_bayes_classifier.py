@@ -75,7 +75,12 @@ def classify(document, priors, likelihoods, vocabulary):
 
     return max(class_scores, key=class_scores.get)
 
-if __name__ == "__main__":
+def main():
     priors, likelihoods, vocabulary = train_naive_bayes(data)
     result = classify(D, priors, likelihoods, vocabulary)
     print(f"The most likely class for the document '{D}' is: {result}")
+
+
+if __name__ == "__main__":
+    main()
+    
