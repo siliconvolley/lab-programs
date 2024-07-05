@@ -1,55 +1,46 @@
 # 4) Implement top-down and bottom-up parsing using python NLTK
 
 import nltk
-import sys
-from nltk import CFG
-from nltk.parse import RecursiveDescentParser, ShiftReduceParser
+from nltk.grammar import CFG
+from nltk.parse.chart import TopDownChartParser, BottomUpChartParser
 
-# Setting the recursion limit
-sys.setrecursionlimit(100)
-
-# ! Un-comment the following lines to download the required packages if not download
-# nltk.download('punkt')
-# nltk.download('averaged_perceptron_tagger')
-# nltk.download('maxent_ne_chunker')
-# nltk.download('words')
-
-# Define a simple context-free grammar
-grammar = CFG.fromstring("""
+# define a grammer
+grammar = CFG.fromstring('''
     S -> NP VP
-    NP -> Det N | Det N PP
-    VP -> V NP | VP PP
+    VP -> V NP | V NP PP
     PP -> P NP
-    Det -> 'a' | 'the'
-    N -> 'man' | 'park' | 'dog' | 'telescope'
-    V -> 'saw'
-    P -> 'in' | 'with'
-""")
+    V -> "saw" | "are"
+    NP -> "rishabh" | "achal" | Det N | Det N PP
+    Det -> "a" | "an" | "the"
+    N -> "man" | "earth"
+    P -> "with" | "under"
+''')
 
-# Function to parse a sentence using Recursive Descent Parser
-def top_down_parsing(sentence):
-    rd_parser = RecursiveDescentParser(grammar)
-    print("Parsing with Recursive Descent Parser (Top-Down):")
-    for tree in rd_parser.parse(sentence):
-        print(tree)
-        tree.pretty_print()
-
-# Function to parse a sentence using Shift-Reduce Parser
-def bottom_up_parsing(sentence):
-    sr_parser = ShiftReduceParser(grammar)
-    print("Parsing with Shift-Reduce Parser (Bottom-Up):")
-    for tree in sr_parser.parse(sentence):
-        print(tree)
-        tree.pretty_print()
-        return
+# function to parse a sentence using top-down and bottom-up parsers
+def parse_sentence(sentence):
+    # Tokenize the sentence
+    tokens = sentence.split()
     
-def main():
-    # Input sentence
-    sentence = "the man saw the dog in the park".split()
+    # Top Down Parsing
+    top_down_parser = TopDownChartParser(grammar)
+    print("Top Down parsing results: ")
+    top_down_results = list(top_down_parser.parse(tokens))
+    if top_down_results:
+        for tree in top_down_results:
+            print(tree)
+    else:
+        print("No parse tree found using top-downn parsing")
 
-    # Parse the sentence using both approaches
-    top_down_parsing(sentence)
-    bottom_up_parsing(sentence)
-    
-if __name__ == "__main__":
-    main()
+    # Bottom Up Parsing
+    bottom_up_parser = BottomUpChartParser(grammar)
+    print("Bottom Up parsing results: ")
+    bottom_up_results = list(bottom_up_parser.parse(tokens))
+    if bottom_up_results:
+        for tree in bottom_up_results:
+            print(tree)
+    else:
+        print("No parse tree found using bottom up parsing")
+
+# Get user input and pass into the function
+user_input = input("Enter a sentence to parse: ")
+parse_sentence(user_input)
